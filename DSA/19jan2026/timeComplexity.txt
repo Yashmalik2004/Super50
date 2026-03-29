@@ -1,0 +1,6 @@
+Best complexity = O(1)
+Average complexity = O(n)
+Worst complexity = O(n)
+
+
+(Relative Parameter)

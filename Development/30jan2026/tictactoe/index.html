@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+            display: flex;
+        }
+        main {
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+            grid-template-rows: repeat(3, 200px);
+            background-color: rgb(0,0,0);
+            width: fit-content;
+        }
+
+        main div {
+            background-color: rgb(133, 38, 223);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
+            border: 1px solid rgb(41, 39, 39);
+            font-size: 84px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: bold;
+            box-shadow: 6px 8px 10px rgb(53, 53, 53);
+            border-radius: 69px;
+        }
+        main div:hover{
+            cursor: pointer;
+            background-color: rgb(190, 98, 208);
+            color: black;
+            font-weight: bold;
+            transform: scale(1.1);
+            transition: all 0.3s ease-in-out;
+        }
+        #win-area{
+            display: none;
+        }
+        img{
+            width: 800px;
+            height: 800px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <main onClick="handleClick(event)">
+        <div  class="btn" id="0,0"></div>
+        <div  class="btn" id="0,1"></div>
+        <div  class="btn" id="0,2"></div>
+        <div  class="btn" id="1,0"></div>
+        <div  class="btn" id="1,1"></div>
+        <div  class="btn" id="1,2"></div>
+        <div  class="btn" id="2,0"></div>
+        <div  class="btn" id="2,1"></div>
+        <div  class="btn" id="2,2"></div>
+    </main>
+    <div id="win-area"><img src="img.gif" alt="">hoo</div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

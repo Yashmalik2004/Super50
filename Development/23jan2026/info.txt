@@ -1,0 +1,16 @@
+
+function print(val){
+  console.log('------------>');
+  console.log('----->',val)
+  console.log('------------>');
+}
+function sum(a,b, x){
+  const ans=a+b;
+  x(print)
+}
+
+const res=sum(15,33, print);
+//Hof= higher order functions-> a function that takes another function as a parameter or returns a function. eg: sum().
+//callbacks= a function which is passed as an arguement to another arguement. eg: print().
+
+browser is a synchronous single threaded language.

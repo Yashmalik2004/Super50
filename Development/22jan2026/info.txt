@@ -1,0 +1,9 @@
+const x={
+  "name":"yash",
+};
+
+in memory there is STACK and HEAP;
+
+x is stored in stack and address is stored in heap.
+object x will the store the address of the value in the stack.
+console.log(x) only checks value present in the heap and then displays it.

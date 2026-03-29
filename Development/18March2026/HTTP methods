@@ -1,0 +1,5 @@
+GET = read 
+POST = create
+PUT = edit ( replace )
+PATCH = edit some part of the data
+DELETE = delete a record
