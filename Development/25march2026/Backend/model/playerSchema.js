@@ -11,21 +11,21 @@ const playerSchema = new Schema({
     trim: true,
     unique: true,
   },
-  avatarURL: string,
-  skills:[{
-    type: String,
-    enum: ["killing","survival","defense","dance"],
-  },],
   email:{
     type: String,
     required: true,
     unique: true,
     trim: true,
   },
+  avatarURL: String,
+  skills:[{
+    type: String,
+    enum: ["killing","survival","defense","dance"],
+  },],
   description: String,
   
 });
 
 const Player = model("Player", playerSchema);
 
-module.exports = Player;
+module.exports = {Player};
