@@ -14,8 +14,9 @@ int main() {
         vector<int> arr;
 
         int l = 1, r = 3*n;
+        int n = arr.size();
 
-        while (arr.size() < 3*n) {
+        while ( n < 3*n) {
             arr.push_back(l);       
             arr.push_back(r-1);     
             arr.push_back(r);       
