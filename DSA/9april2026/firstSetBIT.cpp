@@ -1,19 +1,3 @@
-// #include<bits/stdc++.h>
-// using namespace std;
-
-// int main(){
-//   int n;
-//   cin>>n;
-//   int msbPos=0;
-//   while(n>1){
-//     n=n>>1;
-//     msbPos++;
-//   }
-//   cout<<msbPos<<endl;
-//   return 0;
-// }
-
-
 
 #include <bits/stdc++.h>
 using namespace std;
