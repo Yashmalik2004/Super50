@@ -1,4 +1,6 @@
+require("dotenv").config();
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { User } = require("../../../models/usersSchema.js");
 
 const signupController = async (req, res) => {
@@ -12,7 +14,7 @@ const signupController = async (req, res) => {
       return;
     }
 
-    const hashedPassword = await bcrypt.hash(password, 50);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await User.create({
       email,
@@ -45,18 +47,26 @@ const loginController = async (req, res) => {
     const isMatch = await bcrypt.compare(password, existingUser.password);
 
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid email or password" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid email or password" });
     }
 
-    // const token = jwt.sign(
-    //   { userId: existingUser._id, email: existingUser.email },
-    //   "secret",
-    //   { expiresIn: "1h" },
-    // );
+    const token = jwt.sign(
+      { userId: existingUser._id, email: existingUser.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" },
+    );
+
+    res.cookie("authorization", token, {
+      maxAge: 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      secure: false, 
+    });
 
     res.status(200).json({
       message: "Login successful",
-    //   token,
+      token,
     });
   } catch (error) {
     console.error("Signup Error:", error);

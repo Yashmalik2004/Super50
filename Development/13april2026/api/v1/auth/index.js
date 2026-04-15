@@ -1,5 +1,6 @@
 const { Router } = require("express");
-const { signupController, loginController } = require("./auth.controllers.js");
+const { signupController} = require("./auth.controllers.js");
+const {  loginController } = require("./auth.controllers.js");
 const { validateSignup } = require("./auth.middlewares.js");
 const { validateLogin} = require("./auth.middlewares.js")
 

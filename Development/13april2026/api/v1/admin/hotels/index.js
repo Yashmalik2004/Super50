@@ -6,7 +6,7 @@ const { validateUpdateHotelDto } = require("./dto/validateUpdateHotelDto.js");
 const hotelsRouter = Router();
 
 hotelsRouter.post("/", validateCreateHotelDto, createHotelController);
-hotelsRouter.patch("/:hotelId", validateUpdateHotelDto, updateHotelController);
+hotelsRouter.patch("/:hotelId", validateUpdateHotelDto,/*isUserValid,*/ updateHotelController);
 // TODO:
 // hotelsRouter.get("/:hotelId", getHotelByIdController);
 // hotelsRouter.delete("/:hotelId", validateDeleteHotelDto, deleteHotelController);
