@@ -72,7 +72,7 @@ int main()
   {
     temp = temp->next;
   }
-  Node *delnode = temp->next; // just to delete the node
+  Node *delnode = temp->next; // just to delete the node (optional)
   temp->next = nullptr;
 
   temp = head;
