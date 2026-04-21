@@ -21,9 +21,8 @@ class doublyLinkedList
 private:
   Node *head;
   Node *tail;
-
-public:
-  Node *tail;
+  
+  public:
   doublyLinkedList()
   {
     head = nullptr;
@@ -67,7 +66,7 @@ public:
     Node *temp = head;
     while (temp != nullptr)
     {
-      cout << temp->data << " ";
+      cout << temp->data << "->";
       temp = temp->next;
     }
   }
@@ -79,7 +78,7 @@ public:
       cout << "Empty list, nothing to delete." << endl;
       return;
     }
-    if (tail->prev = nullptr)
+    if (tail->prev == nullptr)
     {
       delete tail;
       head = tail = nullptr;
@@ -87,7 +86,7 @@ public:
     }
     Node *temp = tail;
     tail = tail->prev;
-    temp->next = nullptr;
+    tail->next = nullptr;
     delete temp;
     cout << "Deleted from end." << endl;
   }
@@ -118,8 +117,6 @@ public:
       cout << "Invalid position." << endl;
       return;
     }
-
-    // Case 1: Insert at front
     if (position == 1)
     {
       insertAtFront(value);
@@ -127,51 +124,44 @@ public:
     }
 
     Node *temp = head;
-    int count = 1;
-
-    // Traverse to (position - 1) node
-    while (temp != nullptr && count < position - 1)
+    int c = 1;
+    while (temp != nullptr && c < position - 1)
     {
       temp = temp->next;
-      count++;
+      c++;
     }
-
-    // If position is out of bounds
     if (temp == nullptr)
     {
       cout << "Position out of range." << endl;
       return;
     }
-
-    // Case 2: Insert at end
     if (temp->next == nullptr)
     {
       insertAtEnd(value);
       return;
     }
-
-    // Case 3: Insert in middle
     Node *newNode = new Node(value);
 
     newNode->next = temp->next;
     newNode->prev = temp;
-
     temp->next->prev = newNode;
     temp->next = newNode;
-
     cout << "Inserted at position " << position << endl;
   }
+
 };
 
 int main()
 {
+  doublyLinkedList dll;
+  dll.insertAtFront(5);
+  dll.insertAtEnd(10);
+  dll.insertAtEnd(15);
+  dll.insertAtEnd(20);
+  dll.insertAtPosition(12, 3);
+  dll.deleteFromEnd();
+  dll.deleteFromFront();
+  dll.display();
 
-  // Iterating the DLL
-  // temp = head;
-  while (temp != nullptr)
-  {
-    cout << temp->data << " ";
-    temp = temp->next;
-  }
   return 0;
 }
