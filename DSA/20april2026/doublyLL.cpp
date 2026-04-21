@@ -150,14 +150,17 @@ private:
   }
 
 };
-
 int main()
 {
   doublyLinkedList dll;
   dll.insertAtFront(5);
-  dll.insertAtEnd(10);
-  dll.insertAtEnd(15);
-  dll.insertAtEnd(20);
+  int n;
+  cin>>n;
+  while(n--){
+    int value;
+    cin>>value;
+    dll.insertAtEnd(value);
+  }
   dll.insertAtPosition(12, 3);
   dll.deleteFromEnd();
   dll.deleteFromFront();
