@@ -19,7 +19,6 @@ class dog: public Animal{
   dog(string n, string b):Animal(n) {
     breed = b;
   }
-
   void getdata(){
     cout << "Name: " << name << endl;
     cout << "Breed: " << breed << endl;
@@ -29,4 +28,7 @@ class dog: public Animal{
 int main(){
   dog d("cashu","pug");
   d.getdata();
+
+  Animal a; //upcasting
+  a = new dog("kuku","cat");
 }
