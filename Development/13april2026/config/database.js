@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mng = require("mongoose");
 const URL = process.env.MONGODB_URL;
 
-mongoose
+mng
     .connect(URL, {
         dbName: "hotels-management-tool",
     })
