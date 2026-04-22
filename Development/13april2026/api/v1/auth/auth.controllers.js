@@ -13,8 +13,10 @@ const signupController = async (req, res) => {
       res.status(400).json({ message: "User already exists" });
       return;
     }
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(password, 10);
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash is handled by pre-save hook in userSchema
 
     const newUser = await User.create({
       email,
