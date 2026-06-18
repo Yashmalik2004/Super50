@@ -5,7 +5,7 @@ const { User } = require("../../../models/usersSchema.js");
 
 const signupController = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role} = req.body;
 
     const existingUser = await User.findOne({ email });
 
@@ -13,23 +13,21 @@ const signupController = async (req, res) => {
       res.status(400).json({ message: "User already exists" });
       return;
     }
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(password, 10);
-
     // Hash is handled by pre-save hook in userSchema
-
-    const newUser = await User.create({
-      email,
-      password: hashedPassword,
-      runValidators: true,
-    });
-
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    console.log(email, hashedPassword);
+    const newUser = await User.create(
+      { email, password: hashedPassword , role}
+    );
     res
       .status(201)
       .json({ message: "User created successfully", userId: newUser._id });
   } catch (error) {
     console.error("Signup Error:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 };
 
@@ -40,7 +38,7 @@ const loginController = async (req, res) => {
   //    --> {email, userId} + secret --> token
   // send token in cookie
   try {
-    const { email, password } = req.body;
+    const { email, password , role} = req.body;
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       return res.status(400).json({ message: "Invalid email or password" });
@@ -55,15 +53,19 @@ const loginController = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { userId: existingUser._id, email: existingUser.email },
+      {
+        userId: existingUser._id,
+        email: existingUser.email,
+        role: existingUser.role,
+      },
       process.env.JWT_SECRET,
       { expiresIn: "24h" },
     );
 
-    res.cookie("authorization", token, {
+    res.cookie("authorization", `Bearer ${token}`, {
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
-      secure: false, 
+      secure: false,
     });
 
     res.status(200).json({
