@@ -37,7 +37,7 @@ function App() {
       <div>
         {data.map((elem) => {
           return (
-            <div>
+            <div key={elem.id}>
               <h2>{elem.title}</h2>
               <img src={elem.thumbnail} alt={elem.title} />
             </div>
